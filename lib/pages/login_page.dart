@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:praktikum3/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,8 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _username = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   bool isError = false;
 
   @override
@@ -49,8 +50,10 @@ class _LoginPageState extends State<LoginPage> {
                     setState(() {
                       isError = false;
                     });
-                    _username.text = "";
-                    _password.text = "";
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => HomePage(
+                              username: _username.text,
+                            )));
                   } else {
                     setState(() {
                       isError = true;
